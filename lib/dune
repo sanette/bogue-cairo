@@ -1,0 +1,4 @@
+(library
+ (name bogue_cairo)
+ (public_name bogue-cairo)
+ (libraries tsdl cairo2 bogue))

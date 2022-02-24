@@ -1,0 +1,3 @@
+(executables
+ (names cairo_sdl_mix circles lines)
+ (libraries bogue-cairo))
