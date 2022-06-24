@@ -15,5 +15,5 @@
     It also adds shortcuts for simple shapes (lines, circles, etc.)")
  (tags ("bogue" "graphics" "drawing" "cairo"))
  (depends
-  bogue
+  (bogue (>= 20220217))
   cairo2))

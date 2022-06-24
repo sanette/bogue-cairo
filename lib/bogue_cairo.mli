@@ -51,7 +51,7 @@ module Cairo_area : sig
       call {!init} on it again. *)
 
   val clear : t -> unit
-  (** Clear the whole area (SDL+Cairo) (but not the background) *)
+  (** Clear the whole area (SDL+Cairo) (but not the background). *)
 
   val full_session : Bogue.Sdl_area.t -> (Cairo.context -> unit) -> unit
   (** Shortcut for small Cairo sessions: [full_session area f] will create a
@@ -77,7 +77,7 @@ module Cairo_area : sig
 
   val draw_rectangle : t -> ?color:Bogue.Draw.color -> thick:int ->
     w:int -> h:int -> int * int -> unit
-  (** [draw_rectangle cairo ~color ~thick ~w ~h x0 y0] draws a rectangle of the
+  (** [draw_rectangle cairo ~color ~thick ~w ~h (x0, y0)] draws a rectangle of the
       given line [thick]ness and [color] {e inside} the box of top-left coordinates
       [(x0, y0)], width [w] and height [h]. *)
 
