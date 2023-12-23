@@ -117,8 +117,12 @@ module Cairo_area = struct
     Utils.do_option c.cairo (fun cairo -> Cairo.Surface.finish cairo.surface);
     c.cairo <- None
 
-  let clear c =
-    Utils.do_option c.cairo init_data;
+  (* Warning: this executes immediately. If called shortly after the init, then
+     the init command is removed and hence never executed.*)
+  let clear_queue c =
+    (* Utils.do_option c.cairo (fun cairo -> *)
+    (*     init_data cairo; *)
+    (*     Cairo.Surface.mark_dirty cairo.surface); *)
     Sdl_area.clear c.area
 
   let full_session area f =

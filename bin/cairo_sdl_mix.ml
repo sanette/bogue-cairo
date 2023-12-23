@@ -71,7 +71,7 @@ let cairo_sdl_mix () =
   let cb = W.button "Clear some" in
   W.on_click cb ~click:(fun _ ->
       let area = W.get_sdl_area a in
-      Cairo_area.clear cairo;
+      Cairo_area.clear_queue cairo;
       Cairo_area.full_session area circle;
       Sdl_area.add area sdl_line);
 

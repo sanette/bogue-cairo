@@ -38,8 +38,10 @@ module Cairo_area : sig
   (** {2 Using the Cairo area} *)
 
   val init : t -> unit
-  (** Initializing the Cairo area is compulsory before adding any drawing
-     commands. *)
+  (** Ask for Cairo init. More precisely, this adds the Cairo init to the SDL
+      command queue, and hence will be executed when the area is
+      rendered. Initializing the Cairo area is compulsory before adding any
+      drawing commands. *)
 
   val add : t -> (Cairo.context -> unit) -> unit
   (** [add cairo f] adds the command [f] to the Cairo command queue (which is
@@ -63,8 +65,10 @@ module Cairo_area : sig
   (** Flush and free the Cairo context. It is not usable anymore, unless you
       call {!init} on it again. *)
 
-  val clear : t -> unit
-  (** Clear the whole area (SDL+Cairo) (but not the background). *)
+  val clear_queue : t -> unit
+  (** Clear the whole (SDL+Cairo) command queue (but not the
+      background). Warning! this takes effect immediately. This allow to reset
+      the area without waiting for the command queue to execute itself. *)
 
   val full_session : Bogue.Sdl_area.t -> (Cairo.context -> unit) -> unit
   (** Shortcut for small Cairo sessions: [full_session area f] will create a
