@@ -2,9 +2,12 @@
 
 Add-on to [Bogue](https://github.com/sanette/bogue).
 
-[Cairo](https://www.cairographics.org/) is a famous cross-platform 2D graphics library.
+[Cairo](https://www.cairographics.org/) is a famous cross-platform 2D
+graphics library.
 
-The [bogue-cairo] library enables the use of Cairo drawing functions in Bogue's [Sdl_area](http://sanette.github.io/bogue/Bogue.Sdl_area.html).
+The `bogue-cairo` library enables the use of Cairo drawing functions
+in Bogue's
+[Sdl_area](http://sanette.github.io/bogue/Bogue.Sdl_area.html).
 
 # Examples
 
