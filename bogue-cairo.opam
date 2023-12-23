@@ -14,7 +14,7 @@ bug-reports: "https://github.com/sanette/tsdl-image/issues"
 depends: [
   "dune" {>= "2.8"}
   "bogue" {>= "20220418"}
-  "cairo2"
+  "cairo2" {>= "0.6"}
   "odoc" {with-doc}
 ]
 build: [

@@ -16,4 +16,5 @@
  (tags ("gui" "bogue" "graphics" "drawing" "cairo"))
  (depends
   (bogue (>= 20220418))
-  cairo2))
+  (cairo2 (>= 0.6)))
+)
