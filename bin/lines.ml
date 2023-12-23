@@ -6,7 +6,7 @@ open Bogue_cairo
 (* compare BOGUE example 51 *)
 let lines () =
   let cairo, a = Cairo_area.create_with_widget ~w:500 ~h:500 () in
-  let w,h = Cairo_area.drawing_size cairo in
+  let w, h = Cairo_area.drawing_size cairo in
   let random_line () =
     let thick = Random.int 50 + 1 in
     let color = Draw.random_color () in
@@ -24,7 +24,6 @@ let lines () =
   Cairo_area.finalize cairo;
 
   let layout = L.resident ~name:"Bogue-Cairo lines" a in
-  Bogue.(run (make [] [layout]))
+  Bogue.(run (make [] [ layout ]))
 
-let () =
-  lines ()
+let () = lines ()

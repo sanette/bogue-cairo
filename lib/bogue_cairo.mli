@@ -17,7 +17,6 @@
 *)
 
 module Cairo_area : sig
-
   type t
   (** A Cairo area is a
       {{:https://chris00.github.io/ocaml-cairo/doc/cairo2/Cairo/#cairo_t}Cairo
@@ -30,8 +29,8 @@ module Cairo_area : sig
   val of_sdl_area : Bogue.Sdl_area.t -> t
   (** Create a Cairo area on top of an existing SDL area. *)
 
-  val create_with_widget : w:int -> h:int -> ?style:Bogue.Style.t -> unit ->
-    t * Bogue.Widget.t
+  val create_with_widget :
+    w:int -> h:int -> ?style:Bogue.Style.t -> unit -> t * Bogue.Widget.t
   (** Create a Cairo area from scratch and also return a Bogue widget containing
      the (underlying) SDL area. The interpretation of the arguments is the same
      as for an SDL area: width, height, and background style. *)
@@ -84,23 +83,28 @@ module Cairo_area : sig
   (** Set the drawing color for subsequent Cairo drawing functions. (But not for
      SDL functions.) *)
 
-  val draw_line : t -> ?color:Bogue.Draw.color -> thick:int ->
-    int * int -> int * int -> unit
+  val draw_line :
+    t -> ?color:Bogue.Draw.color -> thick:int -> int * int -> int * int -> unit
   (** [draw_line cairo ~color ~thick (x1, y1) (x2, y2)] draws a line of given
       [color] and [thick]ness from point [(x1, y1)] to point [(x2, y2)]. *)
 
-  val draw_rectangle : t -> ?color:Bogue.Draw.color -> thick:int ->
-    w:int -> h:int -> int * int -> unit
+  val draw_rectangle :
+    t ->
+    ?color:Bogue.Draw.color ->
+    thick:int ->
+    w:int ->
+    h:int ->
+    int * int ->
+    unit
   (** [draw_rectangle cairo ~color ~thick ~w ~h (x0, y0)] draws a rectangle of the
       given line [thick]ness and [color] {e inside} the box of top-left coordinates
       [(x0, y0)], width [w] and height [h]. *)
 
-  val draw_circle : t -> ?color:Bogue.Draw.color -> thick:int -> radius:int ->
-    int * int -> unit
+  val draw_circle :
+    t -> ?color:Bogue.Draw.color -> thick:int -> radius:int -> int * int -> unit
   (** [draw_circle cairo ~color ~thick ~radius (x0, y0)] draws a circle of the given
       line [thick]ness and [color] {e inside} the disc of center coordinates
       [(x0, y0)] and given [radius]. *)
-
 end
 
 (** {3 Example}

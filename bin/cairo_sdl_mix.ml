@@ -4,7 +4,6 @@
    and mix them with SDL commands.
 
    Copyright San Vu Ngoc 2022
-
 *)
 
 open Bogue
@@ -15,23 +14,28 @@ open Tsdl
 
 let no_line = Style.mk_line ~width:0 ()
 
-let round_blue_box = let open Style in
+let round_blue_box =
+  let open Style in
   let border = mk_border ~radius:25 no_line in
   create ~border ~background:(color_bg Draw.(transp blue)) ()
 
 (* compare BOGUE example 49 *)
 let cairo_sdl_mix () =
-  let cairo, a = Cairo_area.create_with_widget ~w:500 ~h:200
-      ~style:round_blue_box () in
+  let cairo, a =
+    Cairo_area.create_with_widget ~w:500 ~h:200 ~style:round_blue_box ()
+  in
 
   (* We draw a diagonal line and a centered thick rectangle, both with Cairo. *)
   let draw cr =
-    let w,h = Cairo_area.drawing_size cairo in
+    let w, h = Cairo_area.drawing_size cairo in
     Cairo_area.set_color cr Draw.(opaque blue);
     let open Cairo in
     set_line_width cr 20.;
-    rectangle cr (float (w/4) +. 10.) (float (h/4) +. 10.)
-      ~w:(float (w/2) -. 19.) ~h:(float (h/2) -. 19.);
+    rectangle cr
+      (float (w / 4) +. 10.)
+      (float (h / 4) +. 10.)
+      ~w:(float (w / 2) -. 19.)
+      ~h:(float (h / 2) -. 19.);
     stroke cr;
     move_to cr 0. 0.;
     set_line_width cr 1.;
@@ -48,12 +52,15 @@ let cairo_sdl_mix () =
 
   (* We draw a thick circle with Cairo. *)
   let circle cr =
-    let w,h = Cairo_area.drawing_size cairo in
+    let w, h = Cairo_area.drawing_size cairo in
     Cairo_area.set_color cr Draw.(opaque black);
     let thick = 20. in
     let open Cairo in
     set_line_width cr thick;
-    arc cr (float (3*w/4)) (float (h/4)) ~r:(float (h/2 + 1) -. thick/.2.)
+    arc cr
+      (float (3 * w / 4))
+      (float (h / 4))
+      ~r:(float ((h / 2) + 1) -. (thick /. 2.))
       ~a1:0. ~a2:(2. *. Float.pi);
     Path.close cr;
     stroke cr
@@ -77,13 +84,10 @@ let cairo_sdl_mix () =
      latter). *)
   Cairo_area.finalize cairo;
 
-  let clear = L.flat ~margins:0 ~align:Draw.Center
-      [ L.resident cb ] in
+  let clear = L.flat ~margins:0 ~align:Draw.Center [ L.resident cb ] in
   Space.full_width clear;
 
-  let layout = L.tower
-      [ L.resident a; clear ] in
-  Bogue.(run (make [] [layout]))
+  let layout = L.tower [ L.resident a; clear ] in
+  Bogue.(run (make [] [ layout ]))
 
-let () =
-  cairo_sdl_mix ()
+let () = cairo_sdl_mix ()

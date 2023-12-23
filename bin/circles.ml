@@ -4,7 +4,7 @@ open Bogue_cairo
 (* Compare [boguex 50] *)
 let circles () =
   let cairo, a = Cairo_area.create_with_widget ~w:500 ~h:200 () in
-  let w,h = Cairo_area.drawing_size cairo in
+  let w, h = Cairo_area.drawing_size cairo in
   Printf.sprintf "Cairo area Physical pixel size: (w=%i, h=%i)" w h
   |> print_endline;
   let random_circle () =
@@ -25,5 +25,4 @@ let circles () =
   let layout = Layout.resident ~name:"Bogue-Cairo circles" a in
   Bogue.(run (of_layout layout))
 
-let () =
-  circles ()
+let () = circles ()
