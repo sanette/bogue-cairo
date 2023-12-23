@@ -13,7 +13,7 @@
  (description
    "This library provides a special Cairo mode for Bogue Sdl_area.
     It also adds shortcuts for simple shapes (lines, circles, etc.)")
- (tags ("bogue" "graphics" "drawing" "cairo"))
+ (tags ("gui" "bogue" "graphics" "drawing" "cairo"))
  (depends
   (bogue (>= 20220217))
   cairo2))

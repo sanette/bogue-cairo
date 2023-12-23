@@ -1,15 +1,12 @@
 open Bogue
-module W = Widget
-module L = Layout
 open Bogue_cairo
 
-let pr = Printf.printf
-
-(* compare BOGUE example 50 *)
+(* Compare [boguex 50] *)
 let circles () =
   let cairo, a = Cairo_area.create_with_widget ~w:500 ~h:200 () in
   let w,h = Cairo_area.drawing_size cairo in
-  pr "w=%i, h=%i\n" w h;
+  Printf.sprintf "Cairo area Physical pixel size: (w=%i, h=%i)" w h
+  |> print_endline;
   let random_circle () =
     let radius = Random.int 100 + 1 in
     let thick = Random.int radius in
@@ -25,8 +22,8 @@ let circles () =
   Cairo_area.flush cairo;
   Cairo_area.finalize cairo;
 
-  let layout = L.resident ~name:"Bogue-Cairo circles" a in
-  Bogue.(run (make [] [layout]))
+  let layout = Layout.resident ~name:"Bogue-Cairo circles" a in
+  Bogue.(run (of_layout layout))
 
 let () =
   circles ()

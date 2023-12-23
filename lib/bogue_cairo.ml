@@ -14,22 +14,22 @@ open Bogue
 module Cairo_area = struct
 
   type cairo = {
-    data : (int, Bigarray.int8_unsigned_elt, Bigarray.c_layout)
-        Bigarray.Array1.t;
-    (* [data] can in principle be recovered by [Cairo.Image.get_data8 surface]
-       but this has a bug, see https://github.com/Chris00/ocaml-cairo/issues/28
+      data : (int, Bigarray.int8_unsigned_elt, Bigarray.c_layout)
+               Bigarray.Array1.t;
+      (* [data] can in principle be recovered by [Cairo.Image.get_data8 surface]
+         but this has a bug, see https://github.com/Chris00/ocaml-cairo/issues/28
        *)
-    target : Sdl.texture;
-    stream : Sdl.texture;
-    surface : Cairo.Surface.t; (* pas nécessaire, on peut faire
-                                  [Cairo.get_target cr]*)
-    cr : Cairo.context
-  }
+      target : Sdl.texture;
+      stream : Sdl.texture;
+      surface : Cairo.Surface.t; (* pas nécessaire, on peut faire
+                                    [Cairo.get_target cr]*)
+      cr : Cairo.context
+    }
 
   type t = {
-    area : Sdl_area.t;
-    mutable cairo : cairo option
-  }
+      area : Sdl_area.t;
+      mutable cairo : cairo option
+    }
 
 
   let of_sdl_area area =
@@ -58,9 +58,9 @@ module Cairo_area = struct
   (* Copy the Sdl_area texture to the Cairo surface. Not used *)
   let _import_sdl_area_to_cairo renderer cairo =
     (* We have to copy the original target texture onto the new streaming
-           texture. SDL_RenderReadPixels is supposed to be very slow,
-           https://wiki.libsdl.org/SDL_RenderReadPixels. If you know of a better
-           way to do this, please tell!  *)
+       texture. SDL_RenderReadPixels is supposed to be very slow,
+       https://wiki.libsdl.org/SDL_RenderReadPixels. If you know of a better
+       way to do this, please tell!  *)
     let save_target = Sdl.get_render_target renderer in
     go (Sdl.set_render_target renderer (Some cairo.target));
     let format = Some Sdl.Pixel.format_argb8888 in
@@ -111,8 +111,8 @@ module Cairo_area = struct
         match c.cairo with
         | None -> print_endline "Cairo_area: nothing to finalize."
         | Some cairo ->
-          Cairo.Surface.flush cairo.surface;
-          copy_cairo_to_sdl_area renderer cairo)
+           Cairo.Surface.flush cairo.surface;
+           copy_cairo_to_sdl_area renderer cairo)
 
   let finalize c =
     flush c;

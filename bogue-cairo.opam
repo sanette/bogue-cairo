@@ -8,7 +8,7 @@ This library provides a special Cairo mode for Bogue Sdl_area.
 maintainer: ["Vu Ngoc San <san.vu-ngoc@laposte.net>"]
 authors: ["Vu Ngoc San <san.vu-ngoc@laposte.net>"]
 license: "ISC"
-tags: ["bogue" "graphics" "drawing" "cairo"]
+tags: ["gui" "bogue" "graphics" "drawing" "cairo"]
 homepage: "https://github.com/sanette/tsdl-image"
 bug-reports: "https://github.com/sanette/tsdl-image/issues"
 depends: [

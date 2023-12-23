@@ -7,11 +7,7 @@ This library enables the use of Cairo drawing functions in Bogue's Sdl_area.
 # Example
 
 We rewrote Example #50 from the BOGUE distribution using
-Bogue-cairo.
-```
-dune exec bin/circles.exe
-```
-Here is the result.
+Bogue-cairo. Here is the result.
 
 ![Cairo circles](https://github.com/sanette/bogue-cairo/blob/main/docs/images/cairo-circles.png)
 

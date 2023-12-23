@@ -1,20 +1,34 @@
 (** Bogue_cairo
 
-Add-on library for BOGUE, enabling the use of Cairo drawing functions in BOGUE's
-   Sdl_area's.
+    {e Want to add the power of Cairo's drawing functions to your GUI
+    application?}
+
+    [Bogue_cairo] is an add-on library for the
+    {{:https://sanette.github.io/bogue/Principles.html}Bogue} GUI library,
+    enabling the use of
+    {{:https://chris00.github.io/ocaml-cairo/doc/cairo2/Cairo/}Cairo drawing
+    functions} in Bogue's
+    {{:https://sanette.github.io/bogue/Bogue.Sdl_area.html}Sdl_area}'s.
+
+@author Vũ Ngọc San
+
+@see <https://github.com/sanette/bogue-cairo> the source code on github
 
 *)
 
 module Cairo_area : sig
 
   type t
-  (** A Cairo area is a Cairo context married with a Bogue SDL area. Both can be
-     used at the same time (see {!flush}). *)
+  (** A Cairo area is a
+      {{:https://chris00.github.io/ocaml-cairo/doc/cairo2/Cairo/#cairo_t}Cairo
+      context} married to a Bogue
+      {{:https://sanette.github.io/bogue/Bogue.Sdl_area.html}Sdl_area}. Both can
+      be used at the same time (see {!flush}). *)
 
   (** {2 Creating the Cairo area} *)
 
   val of_sdl_area : Bogue.Sdl_area.t -> t
-  (** Create a Cairo area on top of a existing SDL area. *)
+  (** Create a Cairo area on top of an existing SDL area. *)
 
   val create_with_widget : w:int -> h:int -> ?style:Bogue.Style.t -> unit ->
     t * Bogue.Widget.t
@@ -55,8 +69,8 @@ module Cairo_area : sig
 
   val full_session : Bogue.Sdl_area.t -> (Cairo.context -> unit) -> unit
   (** Shortcut for small Cairo sessions: [full_session area f] will create a
-     cairo context with [of_sdl_area area] and then [init cairo; add cairo f;
-     finalize cairo]. *)
+     cairo context with [of_sdl_area area] and then
+     [init cairo; add cairo f; finalize cairo]. *)
 
   (** {2 Drawing functions and utilities}
 
@@ -88,3 +102,43 @@ module Cairo_area : sig
       [(x0, y0)] and given [radius]. *)
 
 end
+
+(** {3 Example}
+
+If you have installed [Bogue], you may run [boguex 50] to see a demo of drawing
+circles using the native Bogue circle primitive. Here is an alternative version,
+using Cairo's circles, which is twice as fast.
+
+{[
+open Bogue
+open Bogue_cairo
+
+let circles () =
+  let cairo, a = Cairo_area.create_with_widget ~w:500 ~h:200 () in
+  let w,h = Cairo_area.drawing_size cairo in
+  Printf.sprintf "Cairo area Physical pixel size: (w=%i, h=%i)" w h
+  |> print_endline;
+  let random_circle () =
+    let radius = Random.int 100 + 1 in
+    let thick = Random.int radius in
+    let color = Draw.random_color () in
+    let x = Random.int w in
+    let y = Random.int h in
+    Cairo_area.draw_circle cairo ~color ~thick ~radius (x, y)
+  in
+  Cairo_area.init cairo;
+  for _ = 0 to 500 do
+    random_circle ()
+  done;
+  Cairo_area.flush cairo;
+  Cairo_area.finalize cairo;
+
+  let layout = Layout.resident ~name:"Bogue-Cairo circles" a in
+  Bogue.(run (of_layout layout))
+
+let () =
+  circles ()
+]}
+
+ {%html:<div class="figure"><img src="images/cairo-circles.png"></div>%}
+*)
