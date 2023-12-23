@@ -1,5 +1,5 @@
 (lang dune 2.8)
-(version "0.1")
+(version "0.1.0")
 (name bogue-cairo)
 (generate_opam_files true)
 (license ISC)
