@@ -1,4 +1,4 @@
-(lang dune 2.7)
+(lang dune 2.8)
 (version "0.1")
 (name bogue-cairo)
 (generate_opam_files true)
@@ -15,5 +15,5 @@
     It also adds shortcuts for simple shapes (lines, circles, etc.)")
  (tags ("gui" "bogue" "graphics" "drawing" "cairo"))
  (depends
-  (bogue (>= 20220217))
+  (bogue (>= 20220418))
   cairo2))

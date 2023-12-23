@@ -12,8 +12,8 @@ tags: ["gui" "bogue" "graphics" "drawing" "cairo"]
 homepage: "https://github.com/sanette/tsdl-image"
 bug-reports: "https://github.com/sanette/tsdl-image/issues"
 depends: [
-  "dune" {>= "2.7"}
-  "bogue" {>= "20220217"}
+  "dune" {>= "2.8"}
+  "bogue" {>= "20220418"}
   "cairo2"
   "odoc" {with-doc}
 ]
