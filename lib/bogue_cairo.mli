@@ -67,7 +67,7 @@ module Cairo_area : sig
 
   val clear_queue : t -> unit
   (** Clear the whole (SDL+Cairo) command queue (but not the
-      background). Warning! this takes effect immediately. This allow to reset
+      background). Warning! this takes effect immediately. This allows to reset
       the area without waiting for the command queue to execute itself. *)
 
   val full_session : Bogue.Sdl_area.t -> (Cairo.context -> unit) -> unit
