@@ -23,8 +23,8 @@ let lines () =
   Cairo_area.finalize cairo;
 
   let layout = L.resident ~name:"Bogue-Cairo lines" a in
-  if Sys.getenv_opt "OCAMLCI" = Some "true"
-  then print_endline "Skipping display since OCAMLCI=true."
+  if Sys.getenv_opt "OCAMLCI" = Some "true" then
+    print_endline "Skipping display since OCAMLCI=true."
   else Bogue.(run (make [] [ layout ]))
 
 let () = lines ()
