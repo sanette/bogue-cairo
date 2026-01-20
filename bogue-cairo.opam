@@ -9,10 +9,10 @@ maintainer: ["Vu Ngoc San <san.vu-ngoc@laposte.net>"]
 authors: ["Vu Ngoc San <san.vu-ngoc@laposte.net>"]
 license: "ISC"
 tags: ["gui" "bogue" "graphics" "drawing" "cairo"]
-homepage: "https://github.com/sanette/tsdl-image"
-bug-reports: "https://github.com/sanette/tsdl-image/issues"
+homepage: "https://github.com/sanette/bogue-cairo"
+bug-reports: "https://github.com/sanette/bogue-cairo/issues"
 depends: [
-  "dune" {>= "2.8"}
+  "dune" {>= "2.8" & build}
   "bogue" {>= "20220418"}
   "cairo2"
   "odoc" {with-doc}
@@ -31,4 +31,4 @@ build: [
     "@doc" {with-doc}
   ]
 ]
-dev-repo: "git+https://github.com/sanette/tsdl-image.git"
+dev-repo: "git+https://github.com/sanette/bogue-cairo.git"
