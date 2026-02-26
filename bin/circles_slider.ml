@@ -14,7 +14,7 @@ open Bogue_cairo
 let random_circle ~w ~h cairo =
   let radius = Random.int 100 + 1 in
   let thick = Random.int radius in
-  let color = Draw.random_color () in
+  let color = RGBA.random_color () in
   let x = Random.int w in
   let y = Random.int h in
   Cairo_area.draw_circle cairo ~color ~thick ~radius (x, y)
@@ -43,7 +43,7 @@ let circles () =
 
   let slider =
     W.slider_with_action ~step:1 ~action ~value:!n0 999
-    |> L.resident ~background:(L.color_bg Draw.(transp green))
+    |> L.resident ~background:(L.color_bg RGBA.(transp RGB.green))
   in
   update cairo !n0;
 

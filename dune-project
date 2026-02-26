@@ -1,5 +1,5 @@
 (lang dune 2.8)
-(version "0.1.0")
+(version "0.2.0")
 (name bogue-cairo)
 (generate_opam_files true)
 (license ISC)
@@ -16,5 +16,5 @@
  (tags ("gui" "bogue" "graphics" "drawing" "cairo"))
  (depends
   (dune :build)
-  (bogue (>= 20220418))
+  (bogue (>= 20260208))
   cairo2))

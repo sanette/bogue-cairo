@@ -17,7 +17,7 @@ let no_line = Style.mk_line ~width:0 ()
 let round_blue_box =
   let open Style in
   let border = mk_border ~radius:25 no_line in
-  create ~border ~background:(color_bg Draw.(transp blue)) ()
+  create ~border ~background:(color_bg RGBA.(transp RGB.blue)) ()
 
 (* compare BOGUE example 49 *)
 let cairo_sdl_mix () =
@@ -28,7 +28,7 @@ let cairo_sdl_mix () =
   (* We draw a diagonal line and a centered thick rectangle, both with Cairo. *)
   let draw cr =
     let w, h = Cairo_area.drawing_size cairo in
-    Cairo_area.set_color cr Draw.(opaque blue);
+    Cairo_area.set_color cr RGBA.blue;
     let open Cairo in
     set_line_width cr 20.;
     rectangle cr
@@ -46,14 +46,14 @@ let cairo_sdl_mix () =
   (* Another diagonal line, but this time with the SDL API. *)
   let sdl_line renderer =
     let w, h = Utils.go (Sdl.get_renderer_output_size renderer) in
-    Draw.set_color renderer Draw.(opaque red);
+    Draw.set_color renderer RGBA.red;
     Utils.go (Sdl.render_draw_line renderer 0 h w 0)
   in
 
   (* We draw a thick circle with Cairo. *)
   let circle cr =
     let w, h = Cairo_area.drawing_size cairo in
-    Cairo_area.set_color cr Draw.(opaque black);
+    Cairo_area.set_color cr RGBA.black;
     let thick = 20. in
     let open Cairo in
     set_line_width cr thick;
