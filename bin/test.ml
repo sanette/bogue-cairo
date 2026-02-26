@@ -13,7 +13,7 @@ let circles () =
   let random_circle () =
     let radius = Random.int 100 + 1 in
     let thick = Random.int radius in
-    let color = Draw.random_color () in
+    let color = RGBA.random_color () in
     let x = Random.int w in
     let y = Random.int h in
     Cairo_area.draw_circle cairo ~color ~thick ~radius (x, y)
